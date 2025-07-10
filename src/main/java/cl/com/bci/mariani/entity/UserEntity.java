@@ -1,6 +1,7 @@
 package cl.com.bci.mariani.entity;
 
 
+import cl.com.bci.mariani.util.EncryptedStringConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class UserEntity {
     @Column(name = "EMAIL")
     String email;
     @Column(name = "PASSWORD")
+    @Convert(converter = EncryptedStringConverter.class)
     String password;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Builder.Default

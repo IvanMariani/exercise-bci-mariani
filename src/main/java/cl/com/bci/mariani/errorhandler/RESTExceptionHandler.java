@@ -20,6 +20,7 @@ public class RESTExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Object> handleException(Exception ex) {
+        ex.printStackTrace();
         return buildResponseEntity(new ListAPIError(List.of(new APIError(1,"Error no controlado"))),HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
