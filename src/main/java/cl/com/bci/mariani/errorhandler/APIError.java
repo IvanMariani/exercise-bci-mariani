@@ -1,23 +1,25 @@
 package cl.com.bci.mariani.errorhandler;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Getter
 public class APIError {
 
-    private String message;
+    private LocalDateTime timestamp;
+    private Integer codigo;
+    private String detail;
 
     public APIError() {
-        this.message = "Unexpected error";
+        this.detail = "Unexpected error";
     }
 
-    public APIError(String message) {
-        this.message = message;
+    public APIError(Integer codigo, String detail) {
+        this.timestamp = LocalDateTime.now();
+        this.codigo = codigo;
+        this.detail = detail;
     }
 
 }

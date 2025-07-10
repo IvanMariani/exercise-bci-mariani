@@ -9,9 +9,9 @@ import lombok.Data;
 public class PhoneDTO {
 
     @JsonProperty("number")
-    String number;
+    Long number;
     @JsonProperty("citycode")
-    String cityCode;
+    Integer cityCode;
     @JsonProperty("contrycode")
     String countryCode;
 

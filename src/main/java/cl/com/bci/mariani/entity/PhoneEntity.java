@@ -1,10 +1,11 @@
 package cl.com.bci.mariani.entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -16,12 +17,11 @@ public class PhoneEntity {
 
     @Id
     @Column(name = "PHONE_ID")
-    @GeneratedValue(strategy = GenerationType.UUID)
     String id;
     @Column(name = "NUMBER")
-    String number;
+    Long number;
     @Column(name = "CITY_CODE")
-    String cityCode;
+    Integer cityCode;
     @Column(name = "COUNTRY_CODE")
     String countryCode;
     @ManyToOne(fetch = FetchType.LAZY)

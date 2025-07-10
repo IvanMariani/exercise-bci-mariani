@@ -1,9 +1,14 @@
 package cl.com.bci.mariani.controller;
 
+import cl.com.bci.mariani.dto.ResponseUserActiveDTO;
 import cl.com.bci.mariani.dto.ResponseUserDTO;
 import cl.com.bci.mariani.dto.UserDTO;
 import cl.com.bci.mariani.errorhandler.APIError;
+import cl.com.bci.mariani.errorhandler.ListAPIError;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -13,7 +18,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 
 @Tag(name = "User", description = "The User Api")
 public interface UserController {
@@ -39,11 +43,52 @@ public interface UserController {
                     @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ResponseUserDTO.class))
             }),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = {
-                    @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = APIError.class))
+                    @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ListAPIError.class))
             }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {
-                    @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = APIError.class))
+                    @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ListAPIError.class))
             })
     })
-    ResponseEntity<ResponseUserDTO> createUser(UserDTO userDTO);
+    ResponseEntity<ResponseUserActiveDTO> createUser(UserDTO userDTO);
+
+    @Operation(
+            summary = "Get user info by token",
+            description = "Obtains user information based on the Authorization token"
+    )
+    @Parameters({
+            @Parameter(
+                    name = "Authorization",
+                    description = "JWT token in format 'Bearer {token}'",
+                    required = true,
+                    in = ParameterIn.HEADER,
+                    example = "Bearer eyJhbGciOiJIUzI1NiJ9..."
+            )
+    })
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "User data retrieved",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = ResponseUserActiveDTO.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = ListAPIError.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal Server Error",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = ListAPIError.class)
+                    )
+            )
+    })
+    ResponseEntity<ResponseUserActiveDTO> getUser(String token);
 }

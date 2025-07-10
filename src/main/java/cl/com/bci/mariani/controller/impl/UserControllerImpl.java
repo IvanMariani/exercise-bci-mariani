@@ -1,15 +1,15 @@
 package cl.com.bci.mariani.controller.impl;
 
 import cl.com.bci.mariani.controller.UserController;
-import cl.com.bci.mariani.dto.ResponseUserDTO;
+import cl.com.bci.mariani.dto.ResponseUserActiveDTO;
 import cl.com.bci.mariani.dto.UserDTO;
 import cl.com.bci.mariani.service.UserService;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserControllerImpl implements UserController {
@@ -21,9 +21,17 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @PostMapping("/users")
-    public ResponseEntity<ResponseUserDTO> createUser(@RequestBody @Validated UserDTO userDTO){
-        ResponseUserDTO response = userService.createUser(userDTO);
+    @PostMapping("/sign-up")
+    public ResponseEntity<ResponseUserActiveDTO> createUser(@RequestBody @Validated UserDTO userDTO){
+        ResponseUserActiveDTO response = userService.createUser(userDTO);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @Override
+    @GetMapping("/login")
+    public ResponseEntity<ResponseUserActiveDTO> getUser(@RequestHeader("Authorization") String authHeader){
+        String token = authHeader.startsWith("Bearer ") ? authHeader.substring(7) : authHeader;
+        ResponseUserActiveDTO response = userService.findUser(token);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "a37c1f08-ba8f-48bb-ae0f-4bd1bf448877",
 		"name": "Exercise BCI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "14236593"
 	},
 	"item": [
@@ -13,24 +13,29 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Juan Rodriguez\",\r\n    \"email\": \"ivan@rodrigez.org\",\r\n    \"password\": \"Tiag193!\",\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"1234567\",\r\n            \"citycode\": \"1\",\r\n            \"contrycode\": \"57\"\r\n        },\r\n        {\r\n            \"number\": \"12341\",\r\n            \"citycode\": \"1\",\r\n            \"contrycode\": \"57\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"Juan Rodriguez\",\r\n    \"email\": \"ivan@rodrige.org\",\r\n    \"password\": \"a2asfGfdfdf4\",\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"1234567\",\r\n            \"citycode\": \"1\",\r\n            \"contrycode\": \"57\"\r\n        },\r\n        {\r\n            \"number\": \"12341\",\r\n            \"citycode\": \"1\",\r\n            \"contrycode\": \"57\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users"
-					]
-				}
+				"url": "http://localhost:8080/sign-up"
+			},
+			"response": []
+		},
+		{
+			"name": "Find User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdmFuQHJvZHJpZ2Uub3JnIiwiaWF0IjoxNzUyMTc1ODM1LCJleHAiOjE3NTIxOTM4MzV9.Iu6TEYOwTi_GwSbVosSIQaWPxX_kdeVqL6tIZ3-pZzRiuFmpH8VquJzY8uH_ql0bPlse8NCyeecUl5G4CDaToA"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/login"
 			},
 			"response": []
 		},
@@ -41,24 +46,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Juan Rodriguez\",\r\n    \"email\": \"ivan@rodrigez.org\",\r\n    \"password\": \"Tia193!\",\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"1234567\",\r\n            \"citycode\": \"1\",\r\n            \"contrycode\": \"57\"\r\n        },\r\n        {\r\n            \"number\": \"12341\",\r\n            \"citycode\": \"1\",\r\n            \"contrycode\": \"57\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"Juan Rodriguez\",\r\n    \"email\": \"ivan@rodrigez.org\",\r\n    \"password\": \"a2asfGfdfdf4s!\",\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"1234567\",\r\n            \"citycode\": \"1\",\r\n            \"contrycode\": \"57\"\r\n        },\r\n        {\r\n            \"number\": \"12341\",\r\n            \"citycode\": \"1\",\r\n            \"contrycode\": \"57\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users"
-					]
-				}
+				"url": "http://localhost:8080/sign-up"
 			},
 			"response": []
 		}

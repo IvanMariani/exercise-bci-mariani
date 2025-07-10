@@ -17,5 +17,5 @@ format:
   email:
     regex: ^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$
   password:
-    regex: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$
-    error: Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long
+    regex: ^(?=(?:[^A-Z]*[A-Z][^A-Z]*)$)(?=(?:[^0-9]*[0-9][^0-9]*[0-9][^0-9]*)$)[a-zA-Z0-9]{8,12}$
+    error: Password must contain exactly one uppercase letter, exactly two digits (0–9), only lowercase letters otherwise, no special characters or spaces, and must be between 8 and 12 characters long.
